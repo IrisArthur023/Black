@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Query-LAB — Every Question Deserves an Answer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #fffbf2; /* Cream */
+      --surface: #f5efe1; /* Muted Cream */
+      --card: #ffffff;
+      --border: #e6dfd1;
+      --accent: #ffb300; /* Amber */
+      --accent2: #5d4037; /* Dark Brown */
+      --accent3: #8d6e63; /* Medium Brown */
+      --text: #3e2723; /* Very Dark Brown */
+      --muted: #7d6e67;
+      --glow: rgba(255, 179, 0, 0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(255, 251, 242, 0.8);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.6rem;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .logo span { color: var(--accent); }
+
+    nav ul {
+      list-style: none;
+      display: flex; gap: 2.5rem;
+    }
+    nav ul a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.9rem; letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--bg) !important;
+      padding: 0.5rem 1.4rem;
+      border-radius: 2rem;
+      font-weight: 500 !important;
+      font-size: 0.85rem !important;
+      transition: opacity 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 179, 0, 0.12) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -55%);
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -55%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -55%) scale(1.1); opacity: 0.7; }
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 820px; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(93, 64, 55, 0.1);
+      border: 1px solid rgba(93, 64, 55, 0.3);
+      color: var(--accent2);
+      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.35rem 1rem; border-radius: 2rem;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge::before { content: '✦'; font-size: 0.6rem; }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px; margin: 0 auto 3rem;
+      line-height: 1.7;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    /* ── SEARCH BAR ── */
+    .search-wrap {
+      position: relative;
+      max-width: 600px; margin: 0 auto;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .search-bar {
+      width: 100%;
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 3rem;
+      padding: 1rem 1.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      padding-right: 7rem;
+    }
+    .search-bar::placeholder { color: var(--muted); }
+    .search-bar:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--glow);
+    }
+
+    .search-btn {
+      position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+      background: var(--accent);
+      color: var(--bg);
+      border: none; cursor: pointer;
+      padding: 0.6rem 1.4rem;
+      border-radius: 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .search-btn:hover { opacity: 0.85; }
+
+    .quick-tags {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      justify-content: center; margin-top: 1.2rem;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem; padding: 0.3rem 0.9rem;
+      border-radius: 2rem; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── STATS ── */
+    .stats {
+      display: flex; justify-content: center; gap: 4rem;
+      padding: 3rem 4rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2.4rem; font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── CATEGORIES ── */
+    .section { padding: 5rem 4rem; position: relative; z-index: 1; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-label {
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent2); margin-bottom: 0.8rem;
+    }
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600; letter-spacing: -0.03em;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem; max-width: 1100px; margin: 0 auto;
+    }
+
+    .cat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.2rem;
+      padding: 1.8rem 1.4rem;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .cat-card::before {
+      content: '';
+      position: absolute; inset: 0; opacity: 0;
+      background: var(--cat-color, var(--accent));
+      transition: opacity 0.25s;
+      mix-blend-mode: overlay;
+    }
+    .cat-card:hover { 
+      transform: translateY(-8px); 
+      border-color: var(--accent2); 
+      box-shadow: 0 20px 40px rgba(93, 64, 55, 0.12); 
+    }
+    .cat-card:hover::before { opacity: 0.08; background: var(--accent2); }
+
+    .cat-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .cat-name { font-weight: 500; font-size: 1rem; margin-bottom: 0.3rem; }
+    .cat-count { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── FEATURED Q&A ── */
+    .qa-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+    }
+
+    .qa-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.2rem;
+      padding: 2rem;
+      transition: border-color 0.2s;
+    }
+    .qa-card:hover { border-color: var(--accent); }
+    .qa-card.featured {
+      grid-column: 1 / -1;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
+      border-color: rgba(255, 179, 0, 0.3);
+    }
+
+    .qa-meta {
+      display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;
+    }
+    .qa-subject {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.2rem 0.7rem; border-radius: 1rem;
+      background: rgba(255, 179, 0, 0.1); color: var(--accent);
+    }
+    .qa-age { font-size: 0.78rem; color: var(--muted); }
+
+    .qa-question {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem; font-weight: 600;
+      line-height: 1.4; margin-bottom: 1rem;
+    }
+    .qa-answer {
+      font-size: 0.9rem; color: var(--muted); line-height: 1.7;
+    }
+    .qa-answer strong { color: var(--text); font-weight: 400; }
+
+    .qa-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 1.5rem; padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .qa-likes { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: 0.4rem; }
+    .qa-read { font-size: 0.82rem; color: var(--accent); text-decoration: none; }
+    .qa-read:hover { text-decoration: underline; }
+
+    /* ── HOW IT WORKS ── */
+    .how-bg { background: var(--surface); }
+    .steps {
+      display: flex; gap: 2rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .step {
+      flex: 1;
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--border);
+      border-radius: 1.2rem;
+      position: relative;
+    }
+    .step-num {
+      font-family: 'Fraunces', serif;
+      font-size: 3.5rem; font-weight: 900;
+      color: var(--border); line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .step h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem; font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .step p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── AUDIENCE TABS ── */
+    .audience { max-width: 900px; margin: 0 auto; }
+    .tab-nav {
+      display: flex; gap: 0.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 3rem;
+      padding: 0.4rem; width: fit-content; margin: 0 auto 3rem;
+    }
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      padding: 0.6rem 1.6rem; border-radius: 3rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; color: var(--muted);
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--accent); color: var(--bg); font-weight: 500;
+    }
+
+    .tab-content { display: none; text-align: center; }
+    .tab-content.active { display: block; }
+    .tab-content h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem; font-weight: 600; margin-bottom: 1rem;
+    }
+    .tab-content p { color: var(--muted); max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      max-width: 900px; margin: 0 auto;
+      background: linear-gradient(135deg, rgba(255, 179, 0, 0.08), rgba(93, 64, 55, 0.06));
+      border: 1px solid rgba(245,200,66,0.2);
+      border-radius: 2rem;
+      padding: 4rem 3rem;
+      text-align: center;
+    }
+    .cta-banner h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      margin-bottom: 1rem;
+    }
+    .cta-banner p { color: var(--muted); margin-bottom: 2rem; }
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--accent); color: var(--bg);
+      padding: 0.85rem 2.2rem; border-radius: 3rem;
+      font-size: 1rem; font-weight: 500;
+      border: none; cursor: pointer;
+      transition: opacity 0.2s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      background: none; color: var(--text);
+      padding: 0.85rem 2.2rem; border-radius: 3rem;
+      font-size: 1rem;
+      border: 1px solid var(--border); cursor: pointer;
+      transition: border-color 0.2s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.85rem; color: var(--muted);
+    }
+    footer .logo { font-size: 1.2rem; }
+    footer nav ul { gap: 1.8rem; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* AI Typing Cursor Effect */
+    .typing-cursor::after {
+      content: '▋';
+      display: inline-block;
+      margin-left: 2px;
+      animation: cursorBlink 0.8s step-end infinite;
+      color: var(--accent);
+      vertical-align: middle;
+    }
+    @keyframes cursorBlink { 50% { opacity: 0; } }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      .section { padding: 3.5rem 1.5rem; }
+      .qa-grid { grid-template-columns: 1fr; }
+      .qa-card.featured { grid-template-columns: 1fr; }
+      .steps { flex-direction: column; }
+      .stats { gap: 2rem; flex-wrap: wrap; padding: 2rem 1.5rem; }
+      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Query-<span>LAB</span></div>
+    <ul>
+      <li><a href="#">Explore</a></li>
+      <li><a href="Reviews.html">Reviews</a></li>
+      <li><a href="Plugins.html">Plugins</a></li>
+      <li><a href="Videos.html">Videos</a></li>
+      <li><a href="PromptBuilder.html">Studio</a></li>
+      <li><a href="#">For Schools</a></li>
+      <li><a href="#" class="nav-cta">Ask Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Powered by curiosity</div>
+      <h1>Every Question<br><em>Deserves</em> an Answer</h1>
+      <p class="hero-sub">
+        A living knowledge platform for students, parents, and lifelong learners. Ask anything — from homework help to life's big mysteries.
+      </p>
+      <div class="search-wrap">
+        <input class="search-bar" type="text" placeholder="What are you curious about today?" id="heroSearch"/>
+        <button class="search-btn" onclick="handleSearch()">Ask →</button>
+      </div>
+      <div id="ai-response-container" style="display:none; margin-top: 3rem; text-align: left; animation: fadeUp 0.6s ease both;">
+        <div class="qa-card" style="border-color: var(--accent); background: var(--surface);">
+          <div class="qa-meta">
+            <span class="qa-subject">AI Intelligence</span>
+          </div>
+          <div id="ai-answer-text" class="qa-answer" style="font-size: 1.1rem; color: var(--text);">Thinking...</div>
+        </div>
+      </div>
+      <div class="quick-tags">
+        <span class="tag" onclick="setSearch('Why is the sky blue?')">🌤 Why is the sky blue?</span>
+        <span class="tag" onclick="setSearch('How does photosynthesis work?')">🌿 Photosynthesis</span>
+        <span class="tag" onclick="setSearch('What caused World War II?')">📖 World War II</span>
+        <span class="tag" onclick="setSearch('How do fractions work?')">🔢 Fractions</span>
+        <span class="tag" onclick="setSearch('What is gravity?')">🪐 Gravity</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats reveal">
+    <div class="stat">
+      <div class="stat-num">2.4M+</div>
+      <div class="stat-label">Questions answered</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">180+</div>
+      <div class="stat-label">Subject categories</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">98%</div>
+      <div class="stat-label">Student satisfaction</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">Countries reached</div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="section">
+    <div class="section-header reveal">
+      <div class="section-label">Browse by subject</div>
+      <h2>Find Your Topic</h2>
+    </div>
+    <div class="categories reveal">
+      <div class="cat-card" style="--cat-color:#f5c842;">
+        <div class="cat-icon">🔬</div>
+        <div class="cat-name">Science</div>
+        <div class="cat-count">31 answers</div>
+      </div>
+      <div class="cat-card" style="--cat-color:#4af0b0;">
+        <div class="cat-icon">📐</div>
+        <div class="cat-name">Mathematics</div>
+        <div class="cat-count">0 answers</div>
+      </div>
+      <div class="cat-card" style="--cat-color:#f05a7e;">
+        <div class="cat-icon">📚</div>
+        <div class="cat-name">History</div>
+        <div class="cat-count">0 answers</div>
+      </div>
+      <div class="cat-card" style="--cat-color:#a78bfa;">
+        <div class="cat-icon">🌍</div>
+        <div class="cat-name">Geography</div>
+        <div class="cat-count">0 answers</div>
+      </div>
+      <div class="cat-card" style="--cat-color:#38bdf8;">
+        <div class="cat-icon">✍️</div>
+        <div class="cat-name">Language Arts</div>
+        <div class="cat-count">0 answers</div>
+      </div>
+      <div class="cat-card" style="--cat-color:#fb923c;">
+        <div class="cat-icon">💻</div>
+        <div class="cat-name">Technology</div>
+        <div class="cat-count">0 answers</div>
+      </div>
+      <div class="cat-card" style="--cat-color:#34d399;">
+        <div class="cat-icon">🎨</div>
+        <div class="cat-name">Arts & Music</div>
+        <div class="cat-count">0 answers</div>
+      </div>
+      <div class="cat-card" style="--cat-color:#e879f9;">
+        <div class="cat-icon">🧠</div>
+        <div class="cat-name">Life Skills</div>
+        <div class="cat-count">0 answers</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED Q&A -->
+  <section class="section how-bg">
+    <div class="section-header reveal">
+      <div class="section-label">Trending this week</div>
+      <h2>Popular Questions</h2>
+    </div>
+    <div class="qa-grid reveal">
+
+      <div class="qa-card featured">
+        <div>
+          <div class="qa-meta">
+            <span class="qa-subject">Science</span>
+            <span class="qa-age">Ages 8–14</span>
+          </div>
+          <div class="qa-question">"Why do we only ever see one side of the Moon?"</div>
+          <div class="qa-footer">
+            <span class="qa-likes">♥ 4,821 found this helpful</span>
+            <a href="#" class="qa-read">Read full answer →</a>
+          </div>
+        </div>
+        <div>
+          <div class="qa-answer">
+            The Moon is <strong>tidally locked</strong> to Earth — it rotates on its axis at exactly the same rate it orbits us. This synchronous rotation means the same hemisphere always faces our planet. It took billions of years of gravitational interaction to reach this state, and the same phenomenon happens with many moons throughout the solar system.
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-card">
+        <div class="qa-meta">
+          <span class="qa-subject">Math</span>
+          <span class="qa-age">Ages 10–13</span>
+        </div>
+        <div class="qa-question">"Why do we need algebra if we have calculators?"</div>
+        <div class="qa-answer">Algebra teaches logical thinking and pattern recognition — skills that apply far beyond arithmetic. Calculators solve specific numbers; algebra helps you solve unknown situations.</div>
+        <div class="qa-footer">
+          <span class="qa-likes">♥ 2,340</span>
+          <a href="#" class="qa-read">Read more →</a>
+        </div>
+      </div>
+
+      <div class="qa-card">
+        <div class="qa-meta">
+          <span class="qa-subject" style="background:rgba(141, 110, 99, 0.1);color:var(--accent3);">History</span>
+          <span class="qa-age">Ages 12+</span>
+        </div>
+        <div class="qa-question">"How did the internet get invented?"</div>
+        <div class="qa-answer">It began as ARPANET, a US military research project in 1969. Scientists needed to share data between universities. Over decades it evolved from a handful of connected computers into the global network we have today.</div>
+        <div class="qa-footer">
+          <span class="qa-likes">♥ 3,109</span>
+          <a href="#" class="qa-read">Read more →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="section-header reveal">
+      <div class="section-label">Simple process</div>
+      <h2>How QueryLab Works</h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Ask Your Question</h3>
+        <p>Type anything — no judgment, no limits. Questions can be simple or complex, school-related or just plain curious.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Get Clear Answers</h3>
+        <p>Our answers are written at the right level for you — with examples, visuals, and follow-up suggestions to go deeper.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Keep Exploring</h3>
+        <p>Every answer opens doors. Discover related topics, save your favorites, and build your own knowledge path.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE TABS -->
+  <section class="section how-bg">
+    <div class="section-header reveal">
+      <div class="section-label">Built for everyone</div>
+      <h2>Who Is QueryLab For?</h2>
+    </div>
+    <div class="audience reveal">
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('kids')">Kids</button>
+        <button class="tab-btn" onclick="switchTab('teens')">Teens</button>
+        <button class="tab-btn" onclick="switchTab('parents')">Parents</button>
+        <button class="tab-btn" onclick="switchTab('teachers')">Teachers</button>
+      </div>
+      <div id="tab-kids" class="tab-content active">
+        <h3>Curiosity Has No Age Limit</h3>
+        <p>Safe, age-appropriate answers written for young minds. No ads, no distractions — just clear explanations that spark even more questions.</p>
+      </div>
+      <div id="tab-teens" class="tab-content">
+        <h3>Homework Help & Beyond</h3>
+        <p>From exam prep to deeper dives on subjects you love, EduAsk gives teens the real context behind what they're learning in class.</p>
+      </div>
+      <div id="tab-parents" class="tab-content">
+        <h3>Answer the Unanswerable</h3>
+        <p>When your child stumps you at the dinner table, EduAsk has your back. Explore together and model the joy of learning.</p>
+      </div>
+      <div id="tab-teachers" class="tab-content">
+        <h3>Extend the Classroom</h3>
+        <p>Curate question sets, assign reading, track engagement. EduAsk plugs into your lesson plans and grows with your students.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="cta-banner reveal">
+      <h2>Start Asking Today — It's Free</h2>
+      <p>Join millions of curious minds already learning on EduAsk.</p>
+      <div class="btn-group">
+        <a href="#" class="btn-primary">Ask Your First Question</a>
+        <a href="#" class="btn-secondary">Explore the Library</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo">Query-<span style="color:var(--accent)">LAB</span></div>
+    <nav><ul>
+      <li><a href="#">About</a></li>
+      <li><a href="Reviews.html">Reviews</a></li>
+      <li><a href="Plugins.html">Plugins</a></li>
+      <li><a href="Videos.html">Videos</a></li>
+      <li><a href="PromptBuilder.html">Studio</a></li>
+      <li><a href="#">For Schools</a></li>
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul></nav>
+    <span>© 2026 Query-LAB. All rights reserved.</span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Tab switching
+    function switchTab(id) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelector(`[onclick="switchTab('${id}')"]`).classList.add('active');
+      document.getElementById('tab-' + id).classList.add('active');
+    }
+
+    // Search
+    function setSearch(q) {
+      document.getElementById('heroSearch').value = q;
+      document.getElementById('heroSearch').focus();
+    }
+
+    let typingTimer;
+    function typeWriter(text, element) {
+      clearInterval(typingTimer);
+      element.classList.add('typing-cursor');
+      element.innerText = '';
+      let i = 0;
+      typingTimer = setInterval(() => {
+        if (i < text.length) {
+          element.innerText += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(typingTimer);
+          element.classList.remove('typing-cursor');
+        }
+      }, 15);
+    }
+
+    async function handleSearch() {
+      const q = document.getElementById('heroSearch').value.trim();
+      if (q) {
+        window.location.href = `PromptBuilder.html?q=${encodeURIComponent(q)}`;
+      }
+    }
+    document.getElementById('heroSearch').addEventListener('keydown', e => {
+      if (e.key === 'Enter') handleSearch();
+    });
+  </script>
+</body>
+</html>

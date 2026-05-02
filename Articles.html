@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Unsolved Ledger | Query-LAB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fffbf2;
+            --surface: #f5efe1;
+            --card: #ffffff;
+            --border: #e6dfd1;
+            --accent: #ffb300;
+            --accent2: #5d4037;
+            --text: #3e2723;
+            --muted: #7d6e67;
+        }
+        body { background-color: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .article-card {
+            transition: all 0.4s ease;
+            border: 1px solid var(--border);
+        }
+        .article-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(62, 39, 35, 0.05);
+        }
+        .category-tag {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="flex items-center justify-between p-6 bg-[#fffbf2]/80 backdrop-blur-md border-b border-[#e6dfd1] sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <a href="Homepage.HTML" class="font-['Syne'] font-bold text-xl tracking-tighter uppercase">Query-LAB</a>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="Homepage.HTML" class="text-[#7d6e67] hover:text-[#ffb300] font-medium transition-colors">Home</a>
+            <a href="Mit.HTML" class="text-[#7d6e67] hover:text-[#ffb300] font-medium transition-colors">Explore</a>
+            <a href="Videos.html" class="text-[#7d6e67] hover:text-[#ffb300] font-medium transition-colors">Videos</a>
+            <a href="PromptBuilder.html" class="text-[#7d6e67] hover:text-[#ffb300] font-medium transition-colors">Studio</a>
+            <a href="Contact.html" class="bg-[#3e2723] text-white px-7 py-2.5 rounded-full font-bold hover:bg-[#ffb300] transition-all">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-16">
+        <header class="max-w-3xl mb-20">
+            <h1 class="font-['Fraunces'] text-6xl font-black mb-6 leading-tight">
+                The Unsolved <br><em>Ledger.</em>
+            </h1 >
+            <p class="text-[#7d6e67] text-xl leading-relaxed">
+                Exploring the questions that define our ignorance. From mathematical anomalies to historical shadows, 
+                these are the inquiries that remain open after years of investigation.
+            </p>
+        </header>
+
+        <!-- Article Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <!-- Science -->
+            <article class="article-card reveal bg-white p-10 rounded-[40px]">
+                <span class="category-tag">Science</span>
+                <h3 class="font-['Syne'] text-2xl font-bold mb-4">The Lithium Problem</h3>
+                <p class="text-[#7d6e67] text-sm mb-6">Why does the universe contain three times less Lithium-7 than Big Bang models predict? A decade-old cosmological discrepancy that still baffles physicists.</p>
+                <a href="Science-Article.html" class="font-bold text-xs uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors inline-block">Explore Mystery</a>
+            </article>
+
+            <!-- Mathematics -->
+            <article class="article-card reveal bg-white p-10 rounded-[40px]" style="transition-delay: 0.1s;">
+                <span class="category-tag">Mathematics</span>
+                <h3 class="font-['Syne'] text-2xl font-bold mb-4">The Collatz Conjecture</h3>
+                <p class="text-[#7d6e67] text-sm mb-6">It looks simple enough for a child, yet the world's greatest mathematicians still cannot prove that every number eventually reaches one. Is it unprovable?</p>
+                <a href="Math-Article.html" class="font-bold text-xs uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors inline-block">View Theorem</a>
+            </article>
+
+            <!-- History -->
+            <article class="article-card reveal bg-white p-10 rounded-[40px]" style="transition-delay: 0.2s;">
+                <span class="category-tag">History</span>
+                <h3 class="font-['Syne'] text-2xl font-bold mb-4">The Sea People Identity</h3>
+                <p class="text-[#7d6e67] text-sm mb-6">Who were the mysterious naval raiders that collapsed the Bronze Age civilizations? Despite centuries of study, their origin remains a historical ghost.</p>
+                <a href="History-Article.html" class="font-bold text-xs uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors inline-block">Trace Origins</a>
+            </article>
+
+            <!-- Geography -->
+            <article class="article-card reveal bg-white p-10 rounded-[40px]">
+                <span class="category-tag">Geography</span>
+                <h3 class="font-['Syne'] text-2xl font-bold mb-4">The Richat Structure</h3>
+                <p class="text-[#7d6e67] text-sm mb-6">Commonly known as the 'Eye of the Sahara'. While scientists suggest it's a geological dome, its perfect circular symmetry continues to fuel fringe theories.</p>
+                <a href="Geography-Article.html" class="font-bold text-xs uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors inline-block">Map Data</a>
+            </article>
+
+            <!-- Language Arts -->
+            <article class="article-card reveal bg-white p-10 rounded-[40px]" style="transition-delay: 0.1s;">
+                <span class="category-tag">Language Arts</span>
+                <h3 class="font-['Syne'] text-2xl font-bold mb-4">The Voynich Code</h3>
+                <p class="text-[#7d6e67] text-sm mb-6">An 15th-century manuscript written in an unknown language. AI has tried to crack it for 8 years with no consensus. Is it an elaborate hoax or a lost science?</p>
+                <a href="Language-Article.html" class="font-bold text-xs uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors inline-block">Decipher Text</a>
+            </article>
+
+            <!-- Technology -->
+            <article class="article-card reveal bg-white p-10 rounded-[40px]" style="transition-delay: 0.2s;">
+                <span class="category-tag">Technology</span>
+                <h3 class="font-['Syne'] text-2xl font-bold mb-4">The Alignment Problem</h3>
+                <p class="text-[#7d6e67] text-sm mb-6">As LLMs evolve, how do we mathematically ensure AI values align with human intent? It remains the most critical unsolved hurdle in modern engineering.</p>
+                <a href="Technology-Article.html" class="font-bold text-xs uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors inline-block">Read Research</a>
+            </article>
+
+            <!-- Music -->
+            <article class="article-card reveal bg-white p-10 rounded-[40px]">
+                <span class="category-tag">Music</span>
+                <h3 class="font-['Syne'] text-2xl font-bold mb-4">The 432Hz Frequency</h3>
+                <p class="text-[#7d6e67] text-sm mb-6">The internet is obsessed with the 'natural' tuning of 432Hz vs 440Hz. Is there a biological resonance, or is it purely a psychoacoustic myth?</p>
+                <a href="Music-Article.html" class="font-bold text-xs uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors inline-block">Listen Closely</a>
+            </article>
+
+            <!-- Life Skills -->
+            <article class="article-card reveal bg-white p-10 rounded-[40px]" style="transition-delay: 0.1s;">
+                <span class="category-tag">Life Skills</span>
+                <h3 class="font-['Syne'] text-2xl font-bold mb-4">The Paradox of Choice</h3>
+                <p class="text-[#7d6e67] text-sm mb-6">In an age of infinite digital options, why does decision fatigue lead to lower satisfaction? Mastering focus in the age of noise is the ultimate 21st-century skill.</p>
+                <a href="Skills-Article.html" class="font-bold text-xs uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors inline-block">Learn Mastery</a>
+            </article>
+
+            <!-- The Unknown -->
+            <article class="article-card reveal bg-[#3e2723] p-10 rounded-[40px] flex flex-col justify-center text-center" style="transition-delay: 0.2s;">
+                <h3 class="font-['Syne'] text-white text-2xl font-bold mb-4">What's Missing?</h3>
+                <p class="text-white/60 text-sm mb-8">Have a question that humanity hasn't answered yet? Submit it to our studio.</p>
+                <a href="PromptBuilder.html" class="bg-[#ffb300] text-[#3e2723] py-4 rounded-2xl font-bold hover:scale-105 transition-transform">Ask the Studio</a>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- Detailed Content Section -->
+    <section class="bg-[#f5efe1] py-24 px-6 border-y border-[#e6dfd1]">
+        <div class="container mx-auto max-w-4xl">
+            <div class="reveal">
+                <span class="category-tag">Featured Deep Dive</span>
+                <h2 class="font-['Fraunces'] text-4xl font-black mb-8 italic">Why do we sleep?</h2>
+                <div class="space-y-6 text-[#3e2723]/80 leading-relaxed">
+                    <p>It sounds fundamental, but for the past eight years, sleep science has undergone a radical shift. We know it helps with memory consolidation and "brain washing" (the glymphatic system), but the core evolutionary reason why animals must become unconscious and vulnerable remains a primary mystery in biology.</p>
+                    <p>Every year, thousands of students ask online: <em>"If evolution is about survival, why did we develop a state that makes us completely defenseless for 8 hours a day?"</em></p>
+                    <p>The latest theories suggest it might be a required metabolic reset that cannot happen while the brain is processing external stimuli. But as of 2026, we still don't have a definitive "Unified Theory of Sleep."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center">
+        <div class="flex justify-center gap-6 mb-8 opacity-20">
+            <img src="wrap.png" class="w-8 h-8 grayscale" alt="Logo">
+            <img src="atom.png" class="w-8 h-8 grayscale" alt="Logo">
+        </div>
+        <p class="text-[#7d6e67] text-sm">&copy; 2026 Query-LAB. Curating the Unanswered.</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for Reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

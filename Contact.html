@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Directory | Query-LAB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://kit.fontawesome.com/c066c1bf2b.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-slate-950 text-white">
+
+    <nav class="flex items-center justify-between p-6 bg-slate-950 border-b border-slate-900 sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <img src="wrap.png" alt="Pixel Labs Logo" class="w-11 h-11 rounded-full object-cover border-2 border-amber-500/20 shadow-lg [filter:brightness(0)_saturate(100%)_invert(71%)_sepia(76%)_saturate(1475%)_hue-rotate(352deg)_brightness(101%)_contrast(102%)]">
+            <span class="font-['Syne'] font-bold text-xl tracking-tighter text-white uppercase">Query-LAB</span>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="Homepage.HTML" class="text-slate-400 hover:text-amber-500 font-medium transition-colors">Home</a>
+            <a href="about.html" class="text-slate-400 hover:text-amber-500 font-medium transition-colors">About</a>
+            <a href="services.html" class="text-slate-400 hover:text-amber-500 font-medium transition-colors">Services</a>
+            <a href="Plugins.html" class="text-slate-400 hover:text-amber-500 font-medium transition-colors">Plugins</a>
+            <a href="Videos.html" class="text-slate-400 hover:text-amber-500 font-medium transition-colors">Videos</a>
+            <a href="PromptBuilder.html" class="text-slate-400 hover:text-amber-500 font-medium transition-colors">Studio</a>
+            <a href="Contact.html" class="bg-amber-400 text-black px-6 py-2 rounded-full font-bold transition-all">Contact</a>
+        </div>
+    </nav>
+
+    <section class="relative py-24 px-6 overflow-hidden min-h-[80vh] flex items-center">
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none invert" 
+             style="background-image: url('https://www.transparenttextures.com/patterns/hexellence.png'); background-size: 80px;">
+        </div>
+
+        <div class="container mx-auto">
+            <div class="max-w-3xl mb-20 text-center mx-auto">
+                <h1 class="font-['Syne'] text-5xl md:text-7xl font-extrabold mb-6">Mail-to <br><span class="text-amber-500">Directory.</span></h1>
+                <p class="font-['DM_Sans'] text-slate-400 text-xl">Reach out directly to our specialized teams for a faster response.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- General Inquiry -->
+                <a href="mailto:hello@pixel-labs.com" class="group bg-slate-900/50 border border-slate-800 p-8 rounded-[32px] hover:border-amber-500/50 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-envelope-open-text text-amber-500"></i>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-slate-700 group-hover:text-amber-500 transition-colors"></i>
+                    </div>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-2">General Inquiry</h3>
+                    <p class="text-slate-500 text-sm mb-4 italic">hello@pixel-labs.com</p>
+                    <p class="text-slate-400 text-sm">For general questions, partnerships, and press inquiries.</p>
+                </a>
+
+                <!-- Project Engineering -->
+                <a href="mailto:build@pixel-labs.com?subject=New%20Project%20Inquiry" class="group bg-slate-900/50 border border-slate-800 p-8 rounded-[32px] hover:border-amber-500/50 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-microchip text-amber-500"></i>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-slate-700 group-hover:text-amber-500 transition-colors"></i>
+                    </div>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-2">Technical Sales</h3>
+                    <p class="text-slate-500 text-sm mb-4 italic">build@pixel-labs.com</p>
+                    <p class="text-slate-400 text-sm">Ready to start a project? Connect with our engineering lead.</p>
+                </a>
+
+                <!-- Support -->
+                <a href="mailto:support@pixel-labs.com" class="group bg-slate-900/50 border border-slate-800 p-8 rounded-[32px] hover:border-amber-500/50 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-headset text-amber-500"></i>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-slate-700 group-hover:text-amber-500 transition-colors"></i>
+                    </div>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-2">Client Support</h3>
+                    <p class="text-slate-500 text-sm mb-4 italic">support@pixel-labs.com</p>
+                    <p class="text-slate-400 text-sm">Existing clients looking for maintenance or technical assistance.</p>
+                </a>
+            </div>
+
+            <div class="mt-20 text-center">
+                <p class="text-slate-500 mb-6 font-['DM_Sans']">Prefer a structured brief?</p>
+                <a href="Form.HTML" class="inline-flex items-center gap-2 border-2 border-slate-800 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-900 transition-colors">
+                    Fill Project Requirement Form <i class="fa-solid fa-chevron-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-slate-900 text-center">
+        <p class="text-slate-600 text-sm">&copy; 2026 Query-LAB. Built with precision.</p>
+    </footer>
+</body>
+</html>

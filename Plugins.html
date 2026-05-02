@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plugins — Query-LAB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #fffbf2;
+      --surface: #f5efe1;
+      --card: #ffffff;
+      --border: #e6dfd1;
+      --accent: #ffb300;
+      --accent2: #5d4037;
+      --text: #3e2723;
+      --muted: #7d6e67;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(255, 251, 242, 0.8);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.6rem; color: var(--text); text-decoration: none; }
+    .logo span { color: var(--accent); }
+
+    nav ul { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
+    nav ul a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    nav ul a:hover { color: var(--text); }
+
+    .container { max-width: 1000px; margin: 8rem auto 4rem; padding: 0 2rem; }
+    
+    h1 { font-family: 'Fraunces', serif; font-size: clamp(2.5rem, 5vw, 4rem); text-align: center; margin-bottom: 1rem; }
+    h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+    .subtitle { text-align: center; color: var(--muted); margin-bottom: 4rem; }
+
+    .plugin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .plugin-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      border-radius: 2rem;
+      text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .plugin-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(93, 64, 55, 0.08);
+    }
+
+    .plugin-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .plugin-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent2);
+    }
+
+    .plugin-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .visit-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0.8rem 2rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .request-section {
+      margin-top: 8rem;
+      text-align: center;
+    }
+
+    .request-card {
+      background: var(--surface);
+      padding: 4rem 2rem;
+      border-radius: 3rem;
+      border: 1px solid var(--border);
+    }
+
+    .request-form {
+      max-width: 600px;
+      margin: 3rem auto 0;
+      background: var(--card);
+      padding: 3rem;
+      border-radius: 2rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.6rem; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 1rem; border: 1.5px solid var(--border); border-radius: 1rem;
+      background: var(--bg); font-family: inherit; outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+
+    .submit-request-btn {
+      width: 100%; background: var(--accent2); color: var(--bg); padding: 1.2rem;
+      border-radius: 3rem; font-weight: 600; border: none; cursor: pointer; transition: transform 0.2s;
+    }
+    .submit-request-btn:hover { transform: scale(1.02); }
+
+    footer { text-align: center; padding: 4rem; border-top: 1px solid var(--border); margin-top: 4rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="Mit.HTML" class="logo">Query-<span>LAB</span></a>
+    <ul>
+      <li><a href="Mit.HTML">Home</a></li>
+      <li><a href="Reviews.html">Reviews</a></li>
+      <li><a href="Plugins.html" style="color: var(--text); font-weight: 500;">Plugins</a></li>
+      <li><a href="Videos.html">Videos</a></li>
+      <li><a href="PromptBuilder.html">Studio</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>AI <em>Integrations</em></h1>
+    <p class="subtitle">Explore the intelligence engines powering the EduAsk ecosystem.</p>
+
+    <div class="plugin-grid">
+      <a href="https://chatgpt.com/?utm_source=google&utm_medium=paid_search&utm_campaign=GOOG_C_SEM_GBR_Core_CHT_BAU_ACQ_PER_MIX_ALL_EMEA_GH_EN_021425&c_id=22239765326&c_agid=173707946046&c_crid=733167298253&c_kwid=kwd-1927227100722&c_ims=&c_pms=9067654&c_nw=g&c_dvc=c&gad_source=1&gad_campaignid=22239765326&gbraid=0AAAAA-I0E5dMpjGYoQ-7f9wmKSSSk7stQ&gclid=CjwKCAjw-8vPBhBbEiwAoA39WpAzeP33bEcEmJo_ArG4fae94L9X0Y1EEJydxPjHLCzP6Rxwg_afBBoCiQ8QAvD_BwE" target="_blank" class="plugin-card">
+        <span class="plugin-icon">✨</span>
+        <div class="plugin-name">OpenAI</div>
+        <p class="plugin-desc">Pioneering the future of artificial general intelligence to benefit all of humanity.</p>
+        <span class="visit-btn">Visit OpenAI</span>
+      </a>
+
+      <a href="https://claude.ai/new" target="_blank" class="plugin-card">
+        <span class="plugin-icon">🐚</span>
+        <div class="plugin-name">Anthropic</div>
+        <p class="plugin-desc">An AI safety and research company working to build reliable, interpretable, and steerable AI systems.</p>
+        <span class="visit-btn">Visit Anthropic</span>
+      </a>
+    </div>
+
+    <div class="request-section">
+      <div class="request-card">
+        <div class="plugin-name" style="font-size: 2.2rem;">Missing a <em>Favorite?</em></div>
+        <p class="subtitle" style="margin-bottom: 0;">Tell us which AI integration you'd like to see next in the EduAsk ecosystem.</p>
+        
+        <form class="request-form" id="pluginRequestForm">
+          <div class="form-group">
+            <label>AI Plugin Name</label>
+            <input type="text" id="pluginName" placeholder="e.g. Google Gemini, Perplexity..." required />
+          </div>
+          <div class="form-group">
+            <label>Why should we add it?</label>
+            <textarea id="pluginReason" rows="4" placeholder="How would this help students?" required></textarea>
+          </div>
+          <button type="submit" class="submit-request-btn">Submit Suggestion</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer><p>&copy; 2026 Query-LAB. Powered by curiosity.</p></footer>
+
+  <script>
+    document.getElementById('pluginRequestForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      
+      btn.innerText = 'Suggestion Sent! ✨';
+      btn.style.background = 'var(--accent)';
+      btn.disabled = true;
+      
+      this.reset();
+    });
+  </script>
+</body>
+</html>

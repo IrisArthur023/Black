@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Query-LAB | Creative Digital Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-[#fffbf2] text-[#3e2723] min-h-screen font-['DM_Sans'] overflow-x-hidden">
+
+    <!-- Sidebar -->
+    <div id="overlay" class="fixed inset-0 bg-black/20 backdrop-blur-sm z-[60] opacity-0 pointer-events-none transition-opacity duration-300" onclick="toggleSidebar()"></div>
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-white/90 backdrop-blur-2xl border-r border-[#e6dfd1] z-[70] transform -translate-x-full transition-transform duration-500 ease-in-out p-10 flex flex-col">
+        <div class="flex justify-between items-center mb-12">
+            <span class="font-['Syne'] font-bold text-xl tracking-tighter uppercase">Menu</span>
+            <button onclick="toggleSidebar()" class="text-[#3e2723] hover:text-[#ffb300]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+        </div>
+        <nav class="flex flex-col gap-6">
+            <a href="Homepage.HTML" class="text-2xl font-['Syne'] hover:text-[#ffb300] transition-colors">Home</a>
+            <a href="Mit.HTML" class="text-2xl font-['Syne'] hover:text-[#ffb300] transition-colors">Explore</a>
+            <a href="Reviews.html" class="text-2xl font-['Syne'] hover:text-[#ffb300] transition-colors">Reviews</a>
+            <a href="Plugins.html" class="text-2xl font-['Syne'] hover:text-[#ffb300] transition-colors">Plugins</a>
+            <a href="Videos.html" class="text-2xl font-['Syne'] hover:text-[#ffb300] transition-colors">Videos</a>
+            <a href="PromptBuilder.html" class="text-2xl font-['Syne'] hover:text-[#ffb300] transition-colors">Studio</a>
+            <hr class="border-[#e6dfd1] my-4">
+            <a href="Contact.html" class="text-lg text-[#7d6e67] hover:text-[#3e2723]">Contact Support</a>
+        </nav>
+        <div class="mt-auto">
+            <p class="text-xs uppercase tracking-widest text-[#7d6e67] mb-4">Under Query-LAB</p>
+            <div class="flex gap-4">
+                <div class="w-8 h-8 rounded-full bg-[#ffb300]/10 border border-[#ffb300]/20"></div>
+                <div class="w-8 h-8 rounded-full bg-[#5d4037]/10 border border-[#5d4037]/20"></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Navigation -->
+    <nav class="flex items-center justify-between p-6 bg-[#fffbf2]/80 backdrop-blur-md border-b border-[#e6dfd1] sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <button onclick="toggleSidebar()" class="p-2 hover:bg-[#f5efe1] rounded-lg transition-colors mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+            </button>
+            <img src="atom.png" alt="Pixel Labs Logo" class="w-10 h-10 rounded-full object-cover border border-[#ffb300]/20 shadow-sm [filter:sepia(100%)_saturate(200%)_hue-rotate(350deg)]">
+            <span class="font-['Syne'] font-bold text-xl tracking-tighter uppercase">Query-LAB</span>
+        </div>
+        <div class="hidden md:flex gap-8">
+            <a href="Homepage.HTML" class="text-[#7d6e67] hover:text-[#ffb300] font-medium transition-colors">Home</a>
+            <a href="Mit.HTML" class="text-[#7d6e67] hover:text-[#ffb300] font-medium transition-colors">Explore</a>
+            <a href="Plugins.html" class="text-[#7d6e67] hover:text-[#ffb300] font-medium transition-colors">Plugins</a>
+            <a href="Videos.html" class="text-[#7d6e67] hover:text-[#ffb300] font-medium transition-colors">Videos</a>
+            <a href="PromptBuilder.html" class="text-[#7d6e67] hover:text-[#ffb300] font-medium transition-colors">Studio</a>
+            <a href="Contact.html" class="bg-[#ffb300] text-white px-7 py-2.5 rounded-full font-bold hover:shadow-lg hover:shadow-[#ffb300]/30 transition-all">Contact</a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[calc(100vh-88px)] flex items-center px-6 py-12 lg:py-20 overflow-hidden">
+        <!-- Glow Effect -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ffb300]/10 blur-[140px] rounded-full pointer-events-none"></div>
+
+        <div class="container mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <!-- Text Content -->
+            <div class="order-2 lg:order-1 text-center lg:text-left">
+                <div class="reveal flex items-center justify-center lg:justify-start gap-3 mb-8" style="transition-delay: 0.1s;">
+                    <span class="bg-[#5d4037]/5 text-[#5d4037] text-[10px] font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full border border-[#5d4037]/10">Curiosity First</span>
+                    <span class="text-[#7d6e67] text-sm font-bold uppercase tracking-widest">Eco-System</span>
+                </div>
+
+                <h1 class="reveal font-['Syne'] text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-[0.9]" style="transition-delay: 0.2s;">
+                    <span class="text-[#ffb300]">School Of</span><br>Thoughts.
+                </h1>
+                
+                <p class="reveal text-[#7d6e67] text-lg md:text-xl max-w-xl lg:mx-0 mx-auto mb-10 leading-relaxed" style="transition-delay: 0.3s;">
+                    A premier educational platform under <span class="text-[#3e2723] font-semibold italic">Query-LAB</span>. Empowering learners with modern intelligence for a curious future.
+                </p>
+
+                <div class="reveal relative max-w-lg mb-10 mx-auto lg:mx-0" style="transition-delay: 0.35s;">
+                    <input type="text" id="homeSearch" placeholder="What are you curious about?" class="w-full bg-white border border-[#e6dfd1] rounded-full px-8 py-5 outline-none focus:border-[#ffb300] transition-all shadow-sm text-lg">
+                    <button onclick="forwardSearch()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-[#3e2723]/90 text-white p-3.5 rounded-full hover:bg-[#ffb300] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    </button>
+                </div>
+
+                <div class="reveal flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" style="transition-delay: 0.4s;">
+                    <a href="Mit.HTML" class="bg-[#3e2723] text-white px-10 py-4 rounded-full font-bold hover:bg-[#ffb300] transition-all transform hover:-translate-y-1 text-center shadow-xl shadow-[#3e2723]/10">Get Started</a>
+                    <a href="SignIn.html" class="border border-[#e6dfd1] bg-white text-[#3e2723] px-10 py-4 rounded-full font-bold hover:border-[#ffb300] transition-all text-center">Sign In</a>
+                </div>
+            </div>
+
+            <!-- Visual Element -->
+            <div class="reveal order-1 lg:order-2 flex justify-center lg:justify-end" style="transition-delay: 0.5s;">
+                <div class="relative">
+                    <!-- Rotating Outer Decorative Ring -->
+                    <div class="absolute -inset-6 border border-dashed border-[#ffb300]/40 rounded-full animate-[spin_40s_linear_infinite]"></div>
+                    
+                    <!-- Main Circular Frame -->
+                    <div class="relative w-72 h-72 md:w-[450px] md:h-[450px] rounded-full border-[12px] border-white shadow-2xl overflow-hidden z-10">
+                        <img id="hero-parallax-img" src="lecture-in-progress-stockcake.webp" alt="Hero Image" class="w-full h-full object-cover scale-110">
+                    </div>
+                    
+                    <!-- Decorative Accents -->
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-[#ffb300]/20 rounded-full blur-2xl"></div>
+                    <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('opacity-0');
+            overlay.classList.toggle('pointer-events-none');
+        }
+
+        // Scroll reveal logic
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        function forwardSearch() {
+            const q = document.getElementById('homeSearch').value.trim();
+            if (q) window.location.href = `PromptBuilder.html?q=${encodeURIComponent(q)}`;
+        }
+
+        document.getElementById('homeSearch')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') forwardSearch();
+        });
+
+        // Parallax effect for hero image
+        window.addEventListener('scroll', () => {
+            const parallaxImg = document.getElementById('hero-parallax-img');
+            if (parallaxImg) {
+                let scrollValue = window.scrollY;
+                // Move the image down slightly slower than the scroll speed
+                parallaxImg.style.transform = `translate3d(0, ${scrollValue * 0.15}px, 0) scale(1.1)`;
+            }
+        });
+    </script>
+</body>
+</html>

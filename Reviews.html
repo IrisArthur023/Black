@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reviews — Query-LAB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #fffbf2;
+      --surface: #f5efe1;
+      --card: #ffffff;
+      --border: #e6dfd1;
+      --accent: #ffb300;
+      --accent2: #5d4037;
+      --text: #3e2723;
+      --muted: #7d6e67;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(255, 251, 242, 0.8);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.6rem; color: var(--text); text-decoration: none; letter-spacing: -0.03em; }
+    .logo span { color: var(--accent); }
+
+    nav ul { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
+    nav ul a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    nav ul a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--bg) !important;
+      padding: 0.5rem 1.4rem;
+      border-radius: 2rem;
+      font-weight: 500 !important;
+    }
+
+    .container { max-width: 800px; margin: 8rem auto 4rem; padding: 0 2rem; }
+    
+    h1 { font-family: 'Fraunces', serif; font-size: clamp(2.5rem, 5vw, 4rem); text-align: center; margin-bottom: 1rem; }
+    h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+    .subtitle { text-align: center; color: var(--muted); margin-bottom: 4rem; }
+
+    .review-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      border-radius: 2rem;
+      box-shadow: 0 20px 40px rgba(93, 64, 55, 0.04);
+      margin-bottom: 5rem;
+    }
+
+    .form-group { margin-bottom: 2rem; }
+    label { display: block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent2); margin-bottom: 0.8rem; }
+    
+    input, textarea {
+      width: 100%;
+      padding: 1.2rem;
+      border: 1.5px solid var(--border);
+      border-radius: 1rem;
+      background: var(--bg);
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, textarea:focus { border-color: var(--accent); }
+
+    .submit-btn {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      padding: 1.2rem;
+      border-radius: 3rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.2s;
+    }
+    .submit-btn:hover { opacity: 0.9; }
+
+    .feed-header { border-bottom: 1px solid var(--border); margin-bottom: 2rem; padding-bottom: 1rem; }
+    .feed-title { font-family: 'Fraunces', serif; font-size: 1.5rem; }
+
+    .review-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 1.5rem;
+      margin-bottom: 1.5rem;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .review-meta { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+    .author { font-weight: 600; color: var(--accent2); }
+    .rating { color: var(--accent); }
+
+    footer { text-align: center; padding: 4rem; border-top: 1px solid var(--border); margin-top: 4rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="Mit.HTML" class="logo">Query-<span>LAB</span></a>
+    <ul>
+      <li><a href="Mit.HTML">Home</a></li>
+      <li><a href="Reviews.html" style="color: var(--text); font-weight: 500;">Reviews</a></li>
+      <li><a href="Plugins.html">Plugins</a></li>
+      <li><a href="Videos.html">Videos</a></li>
+      <li><a href="PromptBuilder.html">Studio</a></li>
+      <li><a href="#">Explore</a></li>
+      <li><a href="#" class="nav-cta">Ask Now</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Community <em>Thoughts</em></h1>
+    <p class="subtitle">Join the conversation. Share your experience with the EduAsk community.</p>
+
+    <div class="review-form">
+      <form id="commentForm">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="userName" placeholder="Alex Rivers" required />
+        </div>
+        <div class="form-group">
+          <label>Your Thoughts</label>
+          <textarea id="userMessage" rows="5" placeholder="What do you think about the platform?" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Post My Thought</button>
+      </form>
+    </div>
+
+    <h2 class="feed-title feed-header">Recent Feedback</h2>
+    <div id="reviewsFeed">
+      <!-- Static examples -->
+      <div class="review-card">
+        <div class="review-meta"><span class="author">Jamie Chen</span><span class="rating">★★★★★</span></div>
+        <p>"The interface is so calming. It's the first time I've enjoyed looking up complex math theorems!"</p>
+      </div>
+    </div>
+  </div>
+
+  <footer><p>&copy; 2026 Query-LAB. Built for the curious.</p></footer>
+
+  <script>
+    document.getElementById('commentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const card = document.createElement('div');
+      card.className = 'review-card';
+      card.innerHTML = `<div class="review-meta"><span class="author">${document.getElementById('userName').value}</span><span class="rating">★★★★★</span></div><p>"${document.getElementById('userMessage').value}"</p>`;
+      document.getElementById('reviewsFeed').prepend(card);
+      this.reset();
+    });
+  </script>
+</body>
+</html>

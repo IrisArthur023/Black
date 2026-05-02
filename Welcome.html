@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Query-LAB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <style>
+        :root {
+            --bg: #fffbf2;
+            --text: #3e2723;
+            --accent: #ffb300;
+        }
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'DM Sans', sans-serif; 
+            overflow-x: hidden;
+        }
+        
+        .swiper {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 300px;
+            height: 400px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(93, 64, 55, 0.08);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(20%) contrast(1.1);
+        }
+
+        .swiper-pagination-bullet-active { background: var(--accent) !important; }
+        .swiper-button-next, .swiper-button-prev { color: var(--accent2) !important; }
+
+        .masonry-item:hover img {
+            filter: sepia(0%) contrast(1);
+        }
+        .item-tall { grid-row: span 2; }
+        .item-wide { grid-column: span 2; }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-anim { animation: floating 4s ease-in-out infinite; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+
+    <!-- Hero Section -->
+    <header class="pt-24 pb-16 px-6 text-center max-w-4xl relative z-10">
+        <div class="mb-6 inline-block bg-[#ffb300]/10 border border-[#ffb300]/20 px-4 py-1 rounded-full">
+            <span class="text-xs font-bold uppercase tracking-widest text-[#ffb300]">Welcome to Query-LAB</span>
+        </div>
+        <h1 class="font-['Fraunces'] text-6xl md:text-8xl font-black mb-8 leading-none">
+            The Journey <br><em>Begins Here.</em>
+        </h1>
+        <p class="text-[#7d6e67] text-lg md:text-xl mb-12 max-w-2xl mx-auto">
+            Where curiosity meets intelligence. Explore a gallery of knowledge curated for the modern learner.
+        </p>
+        <a href="Homepage.HTML" class="inline-flex items-center gap-4 bg-[#3e2723] text-white px-12 py-5 rounded-full font-bold text-lg hover:bg-[#ffb300] transition-all transform hover:-translate-y-1 shadow-2xl shadow-[#3e2723]/20">
+            Enter the Ecosystem
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </a>
+    </header>
+
+   <!-- Image Gallery -->
+    <section class="container mx-auto px-6 mb-24">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="Classroom.jpg" alt="Classroom">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=800" alt="Study">
+                </div>
+                <div class="swiper-slide">
+                    <img src="mint.jpg" alt="Library">
+                </div>
+                <div class="swiper-slide">
+                    <img src="mint.2.jpg" alt="Students">
+                </div>
+                <div class="swiper-slide">
+                    <img src="mint.3.jpg" alt="Globe">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&q=80&w=800" alt="Books">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1200" alt="Technology">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <!-- Decorative Elements -->
+    <div class="fixed top-1/4 -left-24 w-64 h-64 bg-[#ffb300]/10 blur-[100px] rounded-full pointer-events-none float-anim"></div>
+    <div class="fixed bottom-1/4 -right-24 w-96 h-96 bg-[#5d4037]/5 blur-[120px] rounded-full pointer-events-none float-anim" style="animation-delay: -2s;"></div>
+
+    <footer class="py-12 text-center w-full border-t border-[#e6dfd1]">
+        <div class="flex justify-center gap-6 mb-4">
+            <img src="wrap.png" class="w-8 h-8 opacity-20 grayscale" alt="Logo">
+            <img src="atom.png" class="w-8 h-8 opacity-20 grayscale" alt="Logo">
+        </div>
+        <p class="text-[#7d6e67] text-sm">&copy; 2026 Query-LAB. Designed with Precision.</p>
+    </footer>
+
+    <script>
+        const swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 5,
+                stretch: 0,
+                depth: 100,
+                modifier: 2,
+                slideShadows: false,
+            },
+            autoplay: { delay: 3000, disableOnInteraction: false },
+            pagination: { el: ".swiper-pagination" },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        });
+    </script>
+</body>
+</html>

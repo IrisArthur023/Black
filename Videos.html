@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Gallery — Query-LAB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fffbf2;
+            --surface: #f5efe1;
+            --card: #ffffff;
+            --border: #e6dfd1;
+            --accent: #ffb300;
+            --accent2: #5d4037;
+            --text: #3e2723;
+            --muted: #7d6e67;
+        }
+        body { background-color: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; }
+        .category-pill { transition: all 0.3s ease; border: 1px solid var(--border); }
+        .category-pill.active { background-color: var(--accent); color: var(--text); border-color: var(--accent); font-weight: 700; }
+        .video-card { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid var(--border); }
+        .video-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="flex items-center justify-between p-6 bg-[#fffbf2]/80 backdrop-blur-md border-b border-[#e6dfd1] sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <a href="Homepage.HTML" class="font-['Syne'] font-bold text-xl tracking-tighter uppercase">Query-LAB</a>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="Homepage.HTML" class="text-[#7d6e67] hover:text-[#ffb300] font-medium transition-colors">Home</a>
+            <a href="Mit.HTML" class="text-[#7d6e67] hover:text-[#ffb300] font-medium transition-colors">Explore</a>
+            <a href="Videos.html" class="text-[#ffb300] font-bold transition-colors">Videos</a>
+            <a href="PromptBuilder.html" class="text-[#7d6e67] hover:text-[#ffb300] font-medium transition-colors">Studio</a>
+            <a href="Contact.html" class="bg-[#3e2723] text-white px-7 py-2.5 rounded-full font-bold hover:bg-[#ffb300] transition-all">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12">
+        <header class="max-w-3xl mb-16">
+            <h1 class="font-['Fraunces'] text-6xl font-black mb-4">Knowledge <em>Gallery.</em></h1>
+            <p class="text-[#7d6e67] text-lg">The most viewed educational insights from across the globe, curated for the curious mind.</p>
+        </header>
+
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-4 mb-12">
+            <button onclick="filterVideos('all')" class="category-pill active px-8 py-2.5 rounded-full text-sm uppercase tracking-widest" id="filter-all">All content</button>
+            <button onclick="filterVideos('science')" class="category-pill px-8 py-2.5 rounded-full text-sm uppercase tracking-widest" id="filter-science">Science</button>
+            <button onclick="filterVideos('history')" class="category-pill px-8 py-2.5 rounded-full text-sm uppercase tracking-widest" id="filter-history">History</button>
+            <button onclick="filterVideos('affairs')" class="category-pill px-8 py-2.5 rounded-full text-sm uppercase tracking-widest" id="filter-affairs">Current Affairs</button>
+        </div>
+
+        <!-- Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="video-grid">
+            <!-- Science -->
+            <div class="video-card bg-white rounded-[32px] overflow-hidden group" data-category="science">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800" alt="Cosmos" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#3e2723]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffb300] mb-2 block">Science</span>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-4 leading-tight">The Scale of the Universe 2</h3>
+                    <p class="text-sm text-[#7d6e67] mb-6">A breathtaking journey from the smallest particles to the edge of the observable cosmos.</p>
+                    <a href="https://youtu.be/pSHVbLPWA28" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors">Watch Now</a>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="video-card bg-white rounded-[32px] overflow-hidden group" data-category="history">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="rome.jpg" alt="Rome" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#3e2723]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffb300] mb-2 block">History</span>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-4 leading-tight">The Rise and Fall of Rome</h3>
+                    <p class="text-sm text-[#7d6e67] mb-6">How a small city-state became the greatest empire of the ancient world.</p>
+                    <a href="https://youtu.be/zxKPjD8urG4" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors">Watch Now</a>
+                </div>
+            </div>
+
+            <!-- Affairs -->
+            <div class="video-card bg-white rounded-[32px] overflow-hidden group" data-category="affairs">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=800" alt="AI" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#3e2723]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffb300] mb-2 block">Current Affairs</span>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-4 leading-tight">Artificial Intelligence: The Future</h3>
+                    <p class="text-sm text-[#7d6e67] mb-6">Exploring how generative AI is reshaping the landscape of human industry and creativity.</p>
+                    <a href="https://www.youtube.com/watch?v=ad79nYk2keg" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors">Watch Now</a>
+                </div>
+            </div>
+            
+            <!-- Additional Science -->
+            <div class="video-card bg-white rounded-[32px] overflow-hidden group" data-category="science">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="G8U2+Cover+Photo.webp" alt="Biology" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-8">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffb300] mb-2 block">Science</span>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-4 leading-tight">How Life Began: Prebiotic Soup</h3>
+                    <p class="text-sm text-[#7d6e67] mb-6">The fascinating chemistry behind the emergence of biological life on Earth.</p>
+                    <a href="https://youtu.be/kIP8r7kUc5c" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors">Watch Now</a>
+                </div>
+            </div>
+              <div class="video-card bg-white rounded-[32px] overflow-hidden group" data-category="science">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="mistrol.jpg" alt="Biology" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-8">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffb300] mb-2 block">Science</span>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-4 leading-tight">What come before the big bang?</h3>
+                    <p class="text-sm text-[#7d6e67] mb-6">Exploring the mysteries of the universe before the Big Bang.</p>
+                    <a href="https://youtu.be/LbLLWmmL3YE" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors">Watch Now</a>
+                </div>
+            </div>
+             <!-- History -->
+            <div class="video-card bg-white rounded-[32px] overflow-hidden group" data-category="history">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="maya..jpg" alt="Rome" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#3e2723]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffb300] mb-2 block">History</span>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-4 leading-tight">Why did the Maya Civilization decline so suddenly?</h3>
+                    <p class="text-sm text-[#7d6e67] mb-6">Exploring the factors that led to the sudden decline of the Maya Civilization.</p>
+                    <a href="https://youtu.be/5KZfVGj8h38" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors">Watch Now</a>
+                </div>
+            </div>
+             <!-- History  -->
+            <div class="video-card bg-white rounded-[32px] overflow-hidden group" data-category="history">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="gaza.jpg" alt="Egyptian" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#3e2723]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffb300] mb-2 block">History</span>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-4 leading-tight">The Great Pyramid of Giza still raises eyebrows: how did people move and place those stones so precisely?</h3>
+                    <p class="text-sm text-[#7d6e67] mb-6">Discover the engineering marvels behind one of the world's most iconic structures.</p>
+                    <a href="https://youtu.be/8AgeNvHZ_ks" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors">Watch Now</a>
+                </div>
+            </div>
+             <!-- History  -->
+            <div class="video-card bg-white rounded-[32px] overflow-hidden group" data-category="history">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="stone.jpg" alt="Egyptian" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#3e2723]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffb300] mb-2 block">History</span>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-4 leading-tight">The Great Pyramid of Giza still raises eyebrows: how did people move and place those stones so precisely?</h3>
+                    <p class="text-sm text-[#7d6e67] mb-6">Discover the engineering marvels behind one of the world's most iconic structures.</p>
+                    <a href="https://youtu.be/OU9G7R5GxAg" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors">Watch Now</a>
+                </div>
+            </div>
+               
+            <!-- History -->
+                <div class="video-card bg-white rounded-[32px] overflow-hidden group" data-category="history">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="Amilea.jpg" alt="Egyptian" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#3e2723]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffb300] mb-2 block">History</span>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-4 leading-tight">The disappearance of Amelia Earhart is still debated—crash, capture, or something else?</h3>
+                    <p class="text-sm text-[#7d6e67] mb-6">Explore the mystery surrounding the fate of the famous aviator.</p>
+                    <a href="https://youtu.be/Fi7fC70Nm_k" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors">Watch Now</a>
+            </div>
+                </div>
+   
+            <!-- Additional Science -->
+            <div class="video-card bg-white rounded-[32px] overflow-hidden group" data-category="science">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="dark matter.jpg" alt="Space" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-8">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffb300] mb-2 block">Science</span>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-4 leading-tight">What is Dark Matter?</h3>
+                    <p class="text-sm text-[#7d6e67] mb-6">Discover the mysterious substance that makes up most of the universe.</p>
+                    <a href="https://youtu.be/5iA7wZfxglE" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors">Watch Now</a>
+                </div>
+        </div>
+        <div class="video-card bg-white rounded-[32px] overflow-hidden group" data-category="science">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="cat.jpg" alt="Space" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-8">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffb300] mb-2 block">Science</span>
+                    <h3 class="font-['Syne'] text-xl font-bold mb-4 leading-tight">Curiosity Channel</h3>
+                    <p class="text-sm text-[#7d6e67] mb-6">Explore fascinating topics with Curiosity Stream.</p>
+                    <a href="https://curiositystream.com/" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#ffb300] pb-1 hover:text-[#ffb300] transition-colors">Stream Now</a>
+                </div>
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-[#e6dfd1] text-center mt-24">
+        <p class="text-[#7d6e67] text-sm">&copy; 2026 Query-LAB. Powered by Curiosity.</p>
+    </footer>
+
+    <script>
+        function filterVideos(category) {
+            const cards = document.querySelectorAll('.video-card');
+            const pills = document.querySelectorAll('.category-pill');
+            
+            // Update UI
+            pills.forEach(pill => pill.classList.remove('active'));
+            document.getElementById(`filter-${category}`).classList.add('active');
+
+            // Filter Logic
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => card.style.opacity = '1', 10);
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => card.style.display = 'none', 300);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

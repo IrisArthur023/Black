@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lithium Discrepancy | Science Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #fffbf2; --text: #3e2723; --accent: #ffb300; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; }
+        .archive-list::-webkit-scrollbar { width: 4px; }
+        .archive-list::-webkit-scrollbar-thumb { background: #e6dfd1; border-radius: 10px; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <nav class="p-6 border-b border-[#e6dfd1] flex justify-between items-center sticky top-0 bg-[#fffbf2]/90 backdrop-blur-md z-50">
+        <a href="Articles.html" class="flex items-center gap-2 font-bold uppercase tracking-tighter">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            Back to Ledger
+        </a>
+        <span class="font-['Syne'] text-xs font-bold text-[#ffb300] tracking-[0.3em]">REPOS_SCI_312000</span>
+    </nav>
+
+    <div class="flex flex-col lg:flex-row">
+        <!-- Sidebar: The 312,000 Entry Archive -->
+        <aside class="w-full lg:w-80 border-r border-[#e6dfd1] h-auto lg:h-[calc(100vh-73px)] p-6 overflow-hidden flex flex-col">
+            <div class="mb-6">
+                <h4 class="font-['Syne'] font-bold text-xs uppercase mb-2">Subject Archive</h4>
+                <p class="text-[10px] text-[#7d6e67]">Indexing 312,000 verified inquiries...</p>
+            </div>
+            <div class="mb-6">
+                <input type="text" id="archiveSearch" placeholder="Search archive..." class="w-full bg-white border border-[#e6dfd1] rounded-xl px-4 py-2 text-xs outline-none focus:border-[#ffb300] transition-all">
+            </div>
+            <div class="archive-list overflow-y-auto flex-1 space-y-4 pr-2" id="archiveGrid">
+                <!-- Script will populate a representative sample -->
+            </div>
+        </aside>
+
+        <!-- Main Article Content -->
+        <main class="flex-1 p-8 md:p-16 lg:p-24 max-w-5xl mx-auto">
+            <header class="mb-12">
+                <span class="text-[#ffb300] text-[10px] font-bold uppercase tracking-widest mb-4 block">Entry #14,802 / Unsolved</span>
+                <h1 class="font-['Fraunces'] text-5xl md:text-7xl font-black mb-8 leading-none">The Big Bang's <br><em>Missing Lithium.</em></h1>
+                <div class="flex gap-4 items-center">
+                    <div class="w-12 h-12 rounded-full bg-[#5d4037] flex items-center justify-center text-white font-bold">Q</div>
+                    <div>
+                        <p class="text-sm font-bold">Query-LAB Editorial Team</p>
+                        <p class="text-xs text-[#7d6e67]">Updated March 2026 • 12 min read</p>
+                    </div>
+                </div>
+            </header>
+
+            <article class="prose prose-stone lg:prose-xl max-w-none text-[#3e2723]/90 space-y-8 leading-relaxed">
+                <p class="text-2xl font-['Fraunces'] italic border-l-4 border-[#ffb300] pl-6 py-2">"If our models of the Big Bang are correct, the universe is missing two-thirds of its Lithium. This isn't just a rounding error; it's a foundational crisis in physics."</p>
+                
+                <h3 class="font-['Syne'] text-2xl font-bold pt-6">The Discrepancy</h3>
+                <p>Standard Big Bang Nucleosynthesis (BBN) predicts that the universe's earliest phase should have produced a specific amount of Lithium-7. However, when we point our telescopes at the oldest, most metal-poor stars in our galaxy (the Spite Plateau), we observe only about 30% of that predicted amount.</p>
+
+                <h3 class="font-['Syne'] text-2xl font-bold pt-6">The 8-Year Deadlock</h3>
+                <p>Since 2018, the discrepancy has only deepened. While we’ve solved similar problems for Deuterium and Helium, Lithium remains the lone outlier. Online communities and research forums have posed three primary solutions that remain unproven:</p>
+                <ul class="list-disc pl-6 space-y-4">
+                    <li><strong>Stellar Depletion:</strong> Perhaps stars "eat" their own lithium over time. However, this doesn't explain why stars of varying temperatures show the exact same depletion levels.</li>
+                    <li><strong>New Physics:</strong> Proposed theories suggest decaying dark matter or varying fundamental constants during the first minutes of the universe could have suppressed lithium production.</li>
+                    <li><strong>The Beryllium Path:</strong> Most Lithium-7 actually originates as Beryllium-7. If something interfered with Beryllium creation, the Lithium would never form.</li>
+                </ul>
+
+                <h3 class="font-['Syne'] text-2xl font-bold pt-6">Why It Matters</h3>
+                <p>Solving the Lithium Problem isn't just about one element; it's about verifying if our understanding of the first three minutes of time is accurate. Until this ledger is balanced, our story of the origin of everything remains incomplete.</p>
+            </article>
+
+            <footer class="mt-20 pt-12 border-t border-[#e6dfd1] flex flex-col md:flex-row justify-between items-center gap-8">
+                <p class="text-xs text-[#7d6e67]">Part of the 312,000 Science Repository</p>
+                <div class="flex gap-4">
+                    <button class="px-6 py-3 rounded-full border border-[#e6dfd1] text-xs font-bold hover:bg-white transition-all">Download Data</button>
+                    <button class="px-6 py-3 rounded-full bg-[#3e2723] text-white text-xs font-bold hover:bg-[#ffb300] transition-all">Next Entry →</button>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // Generate 50 dummy entries for the sidebar to visualize the "312,000" scale
+        const grid = document.getElementById('archiveGrid');
+        const searchInput = document.getElementById('archiveSearch');
+        const mysteries = [
+            "Dark Matter Density", "Neutrino Mass Scale", "The Great Attractor", 
+            "Fermi Paradox Solutions", "Tachyon Feasibility", "String Theory Proof",
+            "Quantum Entanglement Speed", "The Hubble Tension", "Black Hole Singularity"
+        ];
+
+        function renderArchive(searchTerm = '') {
+            grid.innerHTML = '';
+            let foundCount = 0;
+            for(let i=1; i<=50; i++) {
+                const mystery = mysteries[i % mysteries.length];
+                if (mystery.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    const div = document.createElement('div');
+                    div.className = "p-4 bg-white/50 rounded-2xl border border-transparent hover:border-[#ffb300] cursor-pointer transition-all";
+                    div.innerHTML = `
+                        <span class="text-[9px] font-bold text-[#ffb300]">#SCI_${312000 - i}</span>
+                        <p class="text-xs font-bold">${mystery}</p>
+                    `;
+                    grid.appendChild(div);
+                    foundCount++;
+                }
+            }
+            if (foundCount === 0) {
+                grid.innerHTML = `<p class="text-[10px] text-[#7d6e67] text-center mt-4">No matching inquiries found.</p>`;
+            }
+        }
+
+        searchInput.addEventListener('input', (e) => renderArchive(e.target.value));
+        renderArchive();
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading | Query-LAB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Fraunces:ital,wght@0,900;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fffbf2;
+            --text: #3e2723;
+            --accent: #ffb300;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+        }
+        .atom-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            perspective: 1000px;
+        }
+        .atom-wrapper {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: floatAndTilt 5s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .atom-icon {
+            width: 110%;
+            height: 110%;
+            /* Custom filter to turn the black atom.png into a rich deep brown */
+            filter: sepia(100%) saturate(400%) hue-rotate(345deg) brightness(0.5) contrast(1.2);
+            animation: rotateAtom 8s linear infinite;
+        }
+        /* Orbital Rings for 3D effect */
+        .orbit-ring {
+            position: absolute;
+            border: 1.5px solid rgba(93, 64, 55, 0.15);
+            border-radius: 50%;
+            width: 160px;
+            height: 60px;
+            pointer-events: none;
+        }
+        .orbit-ring:nth-child(1) { transform: rotateX(75deg) rotateY(0deg); }
+        .orbit-ring:nth-child(2) { transform: rotateX(75deg) rotateY(60deg); }
+        .orbit-ring:nth-child(3) { transform: rotateX(75deg) rotateY(120deg); }
+
+        @keyframes floatAndTilt {
+            0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+            33% { transform: translateY(-15px) rotateX(10deg) rotateY(-5deg); }
+            66% { transform: translateY(5px) rotateX(-5deg) rotateY(10deg); }
+        }
+        @keyframes rotateAtom {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.05); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90px;
+            height: 90px;
+            background: var(--accent);
+            border-radius: 50%;
+            filter: blur(45px);
+            opacity: 0.3;
+            animation: pulseGlow 2.5s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.4); }
+        }
+        .loading-text span {
+            display: inline-block;
+            animation: wave 1.8s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); color: var(--accent); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <div class="atom-container mb-10">
+        <div class="glow"></div>
+        <div class="orbit-ring"></div>
+        <div class="orbit-ring"></div>
+        <div class="orbit-ring"></div>
+        <div class="atom-wrapper">
+            <img src="atom.png" alt="Loading" class="atom-icon">
+        </div>
+    </div>
+
+    <div class="text-center">
+        <h2 class="font-['Fraunces'] text-3xl font-black mb-3 italic">Query-LAB</h2>
+        <p id="loaderText" class="text-xs font-bold uppercase tracking-[0.4em] text-[#7d6e67]"></p>
+    </div>
+
+    <script>
+        const text = "Initialising Curiosity";
+        const container = document.getElementById('loaderText');
+        text.split('').forEach((char, i) => {
+            const span = document.createElement('span');
+            span.textContent = char === ' ' ? '\u00A0' : char;
+            span.style.animationDelay = `${i * 0.07}s`;
+            container.appendChild(span);
+        });
+
+        window.addEventListener('load', () => {
+            setTimeout(() => { window.location.href = 'Welcome.html'; }, 3500);
+        });
+    </script>
+</body>
+</html>
